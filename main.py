@@ -28,12 +28,6 @@ class Weather:
             return "INVALID OPTON"
 
     def getWeather(self, option: str):
-        '''
-        returns the main weather information
-        @param option type str
-        options can be main,description,icon,id
-        '''
-
         if option in ["id", "main", "description", "ison"]:
             return self.weather[option]
         else:
@@ -58,7 +52,7 @@ class Weather:
         if option in ["country", "sunrise", "sunset"]:
             return self.sys[option]
         else:
-            return "INVALID OPTON"
+            return "INVALID OPTION"
 
     def getFormatedTime(self,UNIX_TIMESTAMP:str):
         ts = int(UNIX_TIMESTAMP)
