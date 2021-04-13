@@ -4,7 +4,7 @@ import inspect
 from datetime import datetime
 
 from API import APIinfo
-
+from util import FormateTime
 
 API_URL = "http://api.openweathermap.org/data/2.5/weather?q=" + APIinfo["query"]["city_name"] + "," + APIinfo["query"]["country_code"] + "&units=" + APIinfo["units"] + "&appid=" + APIinfo["API_KEY"]
 
@@ -54,24 +54,22 @@ class Weather:
         else:
             return "INVALID OPTION"
 
-    def getFormatedTime(self,UNIX_TIMESTAMP:str):
-        ts = int(UNIX_TIMESTAMP)
-        return datetime.utcfromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
 
 
 w = Weather()
 
 # :TODO: Convert wind speed from m/s to kmph
+# :TODO: Formate wind direction
 
 info = inspect.cleandoc(f'''
         Current Temparature : {w.getMain("temp")}C
         Feels like : {w.getMain("feels_like")}C
         Max temparature : {w.getMain("temp_max")}C
         Min temparature : {w.getMain("temp_min")}C
-        Wind : {w.getWind("speed")} m/s {w.getWind("deg")} degree 
+        Wind : {w.getWind("speed")} m/s {w.getWind("deg")}{chr(176)} 
         Visibility : {w.getVisibility()}m
-        Sunrise : {w.getFormatedTime(w.getSys("sunrise"))}
-        Sunset : {w.getFormatedTime(w.getSys("sunset"))}
+        Sunrise : {FormateTime(w.getSys("sunrise"))}
+        Sunset : {FormateTime(w.getSys("sunset"))}
 '''
                         )
 
