@@ -1,6 +1,7 @@
 import requests
 import json
 import inspect
+from datetime import datetime
 
 from API import APIinfo
 
@@ -59,12 +60,24 @@ class Weather:
         else:
             return "INVALID OPTON"
 
+    def getFormatedTime(self,UNIX_TIMESTAMP:str):
+        ts = int(UNIX_TIMESTAMP)
+        return datetime.utcfromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
+
 
 w = Weather()
 
+# :TODO: Convert wind speed from m/s to kmph
+
 info = inspect.cleandoc(f'''
-        Current Temparature : {w.getMain("temp")}
-        Feels like : {w.getMain("feels_like")}
+        Current Temparature : {w.getMain("temp")}C
+        Feels like : {w.getMain("feels_like")}C
+        Max temparature : {w.getMain("temp_max")}C
+        Min temparature : {w.getMain("temp_min")}C
+        Wind : {w.getWind("speed")} m/s {w.getWind("deg")} degree 
+        Visibility : {w.getVisibility()}m
+        Sunrise : {w.getFormatedTime(w.getSys("sunrise"))}
+        Sunset : {w.getFormatedTime(w.getSys("sunset"))}
 '''
                         )
 
