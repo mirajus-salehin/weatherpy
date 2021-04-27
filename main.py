@@ -25,10 +25,10 @@ class Weather:
         if option in ["lat", "lon"]:
             return self.coord[option]
         else:
-            return "INVALID OPTON"
+            return "INVALID OPTION"
 
     def getWeather(self, option: str):
-        if option in ["id", "main", "description", "ison"]:
+        if option in ["id", "main", "description", "icon"]:
             return self.weather[option]
         else:
             return "INVALID OPTION"
@@ -59,10 +59,10 @@ class Weather:
 w = Weather()
 
 info = inspect.cleandoc(f'''
-        Current Temparature : {w.getMain("temp")}{chr(176)}C
+        Current Temperature : {w.getMain("temp")}{chr(176)}C
         Feels like : {w.getMain("feels_like")}{chr(176)}C
-        Max temparature : {w.getMain("temp_max")}{chr(176)}C
-        Min temparature : {w.getMain("temp_min")}{chr(176)}C
+        Max temperature : {w.getMain("temp_max")}{chr(176)}C
+        Min temperature : {w.getMain("temp_min")}{chr(176)}C
         Humidity : {w.getMain("humidity")}%
         Wind : {mps_to_kmph(w.getWind("speed"))}kmph {w.getMain("pressure")}atm {w.getWind("deg")}{chr(176)} {FormateCardinalDirection(w.getWind("deg"))}
         Visibility : {w.getVisibility()}m
