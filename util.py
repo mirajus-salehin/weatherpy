@@ -18,3 +18,6 @@ def FormateCardinalDirection(angle:int):
     '''
     direction = ["N","NE","E","SE","S","SW","W","NW"]
     return direction[math.floor(angle / 45) % 8]
+
+def mps_to_kmph(windSpeed:str):
+    return 3.6 * int(windSpeed)

@@ -4,7 +4,7 @@ import inspect
 from datetime import datetime
 
 from API import APIinfo
-from util import FormateTime,FormateCardinalDirection
+from util import FormateTime,FormateCardinalDirection,mps_to_kmph
 
 API_URL = "http://api.openweathermap.org/data/2.5/weather?q=" + APIinfo["query"]["city_name"] + "," + APIinfo["query"]["country_code"] + "&units=" + APIinfo["units"] + "&appid=" + APIinfo["API_KEY"]
 
@@ -58,15 +58,13 @@ class Weather:
 
 w = Weather()
 
-# :TODO: Convert wind speed from m/s to kmph
-# :TODO: Formate wind direction
-
 info = inspect.cleandoc(f'''
         Current Temparature : {w.getMain("temp")}{chr(176)}C
         Feels like : {w.getMain("feels_like")}{chr(176)}C
         Max temparature : {w.getMain("temp_max")}{chr(176)}C
         Min temparature : {w.getMain("temp_min")}{chr(176)}C
-        Wind : {w.getWind("speed")}m/s {w.getMain("pressure")}atm {w.getWind("deg")}{chr(176)} {FormateCardinalDirection(w.getWind("deg"))}
+        Humidity : {w.getMain("humidity")}%
+        Wind : {mps_to_kmph(w.getWind("speed"))}kmph {w.getMain("pressure")}atm {w.getWind("deg")}{chr(176)} {FormateCardinalDirection(w.getWind("deg"))}
         Visibility : {w.getVisibility()}m
         Sunrise : {FormateTime(w.getSys("sunrise"))}
         Sunset : {FormateTime(w.getSys("sunset"))}
