@@ -21,6 +21,11 @@ python main.py
 Add this line to your ```.bashrc``` or ```.zshrc``` file
 
 ```bash
-alias weatherpy='cd weatherpy && python main.py'
+export WEATHERPY_API_KEY="<YOUR_API_KEY>"
+export WEATHERPY_COUNTRY_CODE="<COUNTRY_CODE"
+export WEATHERPY_CITY_NAME="<CITY_NAME>"
+export WEATHERPY_UNITS="metric"
+
+alias weatherpy='cd weather && python main.py'
 ```
 After this open your terminal and type ```weatherpy```
