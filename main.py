@@ -1,12 +1,13 @@
 import requests
 import json
 import inspect
+import os
 from datetime import datetime
 
-from API import APIinfo
 from util import FormateTime,FormateCardinalDirection,mps_to_kmph
 
-API_URL = "http://api.openweathermap.org/data/2.5/weather?q=" + APIinfo["query"]["city_name"] + "," + APIinfo["query"]["country_code"] + "&units=" + APIinfo["units"] + "&appid=" + APIinfo["API_KEY"]
+
+API_URL = "http://api.openweathermap.org/data/2.5/weather?q=" + os.environ["WEATHERPY_CITY_NAME"] + "," + os.environ["WEATHERPY_COUNTRY_CODE"]+ "&units=" + os.environ["WEATHERPY_UNITS"] + "&appid=" + os.environ["WEATHERPY_API_KEY"]
 
 
 weatherResponseRaw = requests.get(API_URL)
