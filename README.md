@@ -26,6 +26,6 @@ export WEATHERPY_COUNTRY_CODE="<COUNTRY_CODE"
 export WEATHERPY_CITY_NAME="<CITY_NAME>"
 export WEATHERPY_UNITS="metric"
 
-alias weatherpy='cd weather && python main.py'
+alias weatherpy='cd <YOUR_CLONED_DIRECTORY> && python main.py'
 ```
 After this open your terminal and type ```weatherpy```
